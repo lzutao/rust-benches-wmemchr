@@ -1,6 +1,7 @@
 #[cfg(not(windows))]
 compile_error!("This crate only works on Windows.");
 
+// See <https://developercommunity.visualstudio.com/content/problem/234075/unresolved-symbols-in-iosfwd-with-has-constexpr-ch-1.html>
 #[cfg(target_env = "msvc")]
 #[cfg(not(target_feature = "crt-static"))]
 compile_error!("wmemchr in MSVC requires the C runtime to be statically linked");
