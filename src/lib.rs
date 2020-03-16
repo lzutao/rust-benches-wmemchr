@@ -17,6 +17,7 @@
 //     }
 // }
 
+// Ported from <https://github.com/bminor/glibc/blob/master/wcsmbs/wmemchr.c>.
 // #[cfg(target_env = "msvc")]
 pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
     let ptr = haystack.as_ptr();
