@@ -13,16 +13,19 @@ jobs:
       matrix:
         target:
           - x86_64-pc-windows-msvc
-          # - x86_64-pc-windows-gnu]
+          - x86_64-pc-windows-gnu
     steps:
     - uses: actions/checkout@v2
+    - name: Install nightly Rust toolchain
+      run: |
+        rustup toolchain install nightly
+        rustup target add ${{ matrix.target }}
+      shell: bash
     - name: Rust Version
       run: |
         rustc -Vv
         cargo -V
       shell: bash
-    - name: Install target
-      run: rustup target add ${{ matrix.target }}
     - name: Bench
       run: cargo bench --target ${{ matrix.target }}
       shell: bash
