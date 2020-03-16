@@ -1,3 +1,5 @@
+// TIP: use godbolt to test it the linkage work on MSVC.
+
 #[cfg(not(windows))]
 compile_error!("This crate only works on Windows.");
 
