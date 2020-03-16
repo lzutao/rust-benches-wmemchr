@@ -8,9 +8,10 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
+    strategy:
+      matrix:
+        target: [x86_64-pc-windows-msvc, x86_64-pc-windows-gnu]
     steps:
     - uses: actions/checkout@v2
     - name: Rust Version
@@ -18,6 +19,8 @@ jobs:
         rustc -Vv
         cargo -V
       shell: bash
-    - name: Build
-      run: RUSTFLAGS='-C target-feature=+crt-static' cargo bench --target x86_64-pc-windows-msvc
+    - name: Install target
+      run: rustup target add ${{ matrix.target }}
+    - name: Bench
+      run: cargo bench --target ${{ matrix.target }}
       shell: bash
