@@ -13,6 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Rust Version
+      run: |
+        rustc -Vv
+        cargo -V
+      shell: bash
     - name: Build
       run: RUSTFLAGS='-C target-feature=+crt-static' cargo bench --target x86_64-pc-windows-msvc
       shell: bash
