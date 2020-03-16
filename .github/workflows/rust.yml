@@ -18,7 +18,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install nightly Rust toolchain
       run: |
+        rustup set profile minimal
         rustup toolchain install nightly
+        rustup default nightly
         rustup target add ${{ matrix.target }}
       shell: bash
     - name: Rust Version
