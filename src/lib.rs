@@ -6,13 +6,14 @@ compile_error!("This crate only works on Windows.");
 compile_error!("wmemchr in MSVC requires the C runtime to be statically linked");
 
 pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
+    #[cfg(target_env = "gnu")]
     extern "C" {
-        #[cfg(target_env = "gnu")]
         fn wmemchr(s: *const u16, c: u16, n: usize) -> *mut u16;
     }
 
+    #[cfg(target_env = "msvc")]
+    #[link(name = "c")]
     extern "C" {
-        #[cfg(target_env = "msvc")]
         // FIXME: Hopefully this will fix the "external symbol wmemchr" on MSVC toolchain
         //        as clang include a builtin function for wmemchr.
         //
