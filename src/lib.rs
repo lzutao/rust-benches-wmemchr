@@ -13,7 +13,7 @@ pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
     }
 
     #[cfg(target_env = "msvc")]
-    #[link(name = "c")]
+    #[link(name = "libucrt")]
     extern "C" {
         // FIXME: Hopefully this will fix the "external symbol wmemchr" on MSVC toolchain
         //        as clang include a builtin function for wmemchr.
