@@ -23,7 +23,7 @@ pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
     let mut len = haystack.len();
     let mut start = &haystack[..];
 
-    /* For performance reasons unfold the loop four times.  */
+    // For performance reasons unfold the loop eight times.
     while len >= 8 {
         if start[0] == needle {
             return Some((start.as_ptr() as usize - ptr as usize) / 2);
