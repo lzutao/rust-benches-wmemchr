@@ -6,5 +6,5 @@ Rust's `iter::position` and C's `wmemchr` on Windows target.
 Run:
 
 ```bash
-RUSTFLAGS='-C target-feature=+crt-static' cargo bench --target x86_64-pc-windows-msvc
+cargo bench
 ```
