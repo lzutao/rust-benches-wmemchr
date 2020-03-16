@@ -43,7 +43,7 @@ pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
 
         start += off;
         if unsafe { *p.add(1) == high } {
-            assert!(start % 2 == 1);
+            // assert!(start % 2 == 1);
             return Some((start + 1) / 2);
         }
 
