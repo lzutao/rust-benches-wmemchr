@@ -2,8 +2,7 @@
 compile_error!("This crate only works on Windows.");
 
 // Ported from <https://github.com/bminor/glibc/blob/master/wcsmbs/wmemchr.c>.
-// #[cfg(target_env = "msvc")]
-pub fn wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
+pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
     let ptr = haystack.as_ptr();
     let mut len = haystack.len();
     let mut start = &haystack[..];
