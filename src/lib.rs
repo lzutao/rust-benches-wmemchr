@@ -97,18 +97,18 @@ pub fn unrollled_wmemchr_iterative(needle: u16, haystack: &[u16]) -> Option<usiz
 
 #[test]
 fn test_implementation() {
-    let r = unrolled_find_u16s(0, &[1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    let r = unrollled_wmemchr(0, &[1, 2, 3, 4, 5, 6, 7, 8, 9]);
     assert_eq!(r, None);
 
-    let r = unrolled_find_u16s(0, &[0, 2, 3, 4, 5, 6, 7, 8, 9]);
+    let r = unrollled_wmemchr(0, &[0, 2, 3, 4, 5, 6, 7, 8, 9]);
     assert_eq!(r, Some(0));
 
-    let r = unrolled_find_u16s(0, &[1, 2, 0, 4, 5, 6, 7, 8, 9]);
+    let r = unrollled_wmemchr(0, &[1, 2, 0, 4, 5, 6, 7, 8, 9]);
     assert_eq!(r, Some(2));
 
-    let r = unrolled_find_u16s(0, &[1, 2, 3, 4, 5, 6, 7, 0, 9]);
+    let r = unrollled_wmemchr(0, &[1, 2, 3, 4, 5, 6, 7, 0, 9]);
     assert_eq!(r, Some(7));
 
-    let r = unrolled_find_u16s(0, &[1, 2, 3, 4, 5, 6, 7, 8, 0]);
+    let r = unrollled_wmemchr(0, &[1, 2, 3, 4, 5, 6, 7, 8, 0]);
     assert_eq!(r, Some(8));
 }
