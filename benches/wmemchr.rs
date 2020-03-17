@@ -1,6 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
 use rand::Rng;
-use wmemchr_benches::unrolled_find_u16s;
+use wmemchr_benches::unrollled_wmemchr_iterative;
 
 const SMALL: usize = 256;
 const MEDIUM: usize = 66536;
@@ -19,8 +19,11 @@ fn bench_small_no_null(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
@@ -36,8 +39,11 @@ fn bench_small_null_middle(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
@@ -53,8 +59,11 @@ fn bench_small_null_end(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
@@ -69,8 +78,11 @@ fn bench_medium_no_null(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
@@ -86,8 +98,11 @@ fn bench_medium_null_middle(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
@@ -103,8 +118,11 @@ fn bench_medium_null_end(c: &mut Criterion) {
     group.bench_function("iter::position", |b| {
         b.iter(|| buf.iter().position(|&c| c == 0))
     });
-    group.bench_function("unrolled_find_u16s", |b| {
-        b.iter(|| unrolled_find_u16s(0, &buf))
+    group.bench_function("unrollled_wmemchr", |b| {
+        b.iter(|| unrollled_wmemchr(0, &buf))
+    });
+    group.bench_function("unrollled_wmemchr_iterative", |b| {
+        b.iter(|| unrollled_wmemchr_iterative(0, &buf))
     });
     group.finish();
 }
