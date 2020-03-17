@@ -7,7 +7,7 @@ pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
 
     // For performance reasons unfold the loop eight times.
     let mut chunks_8 = haystack.chunks_exact(8);
-    for chunk in chunks_8 {
+    for chunk in &chunks_8 {
         let mut iter = chunk.iter();
         if let Some(c) = iter.next() {
             if *c == needle {
