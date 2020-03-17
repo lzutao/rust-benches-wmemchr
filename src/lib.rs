@@ -51,38 +51,7 @@ pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
         }
     }
 
-    let mut remains = chunks_8.remainder().iter();
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
-        if *c == needle {
-            return Some((c as *const u16 as usize - ptr as usize) / 2);
-        }
-    }
-    if let Some(c) = remains.next() {
+    for c in chunks_8.remainder() {
         if *c == needle {
             return Some((c as *const u16 as usize - ptr as usize) / 2);
         }
