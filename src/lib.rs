@@ -1,5 +1,5 @@
-#[cfg(not(windows))]
-compile_error!("This crate only works on Windows.");
+// #[cfg(not(windows))]
+// compile_error!("This crate only works on Windows.");
 
 // Ported from <https://github.com/bminor/glibc/blob/master/wcsmbs/wmemchr.c>.
 pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
