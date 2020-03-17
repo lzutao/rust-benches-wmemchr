@@ -96,7 +96,7 @@ fn test_implementation() {
     assert_eq!(r, None);
 
     let r = unrolled_find_u16s(0, &[0, 2, 3, 4]);
-    assert_eq!(r, Some(1));
+    assert_eq!(r, Some(0));
 
     let r = unrolled_find_u16s(0, &[1, 2, 0, 4]);
     assert_eq!(r, Some(2));
