@@ -13,37 +13,37 @@ pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
         let iter = chunk.iter().enumerate();
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
         if let Some((i, c)) = iter.next() {
             if *c == needle {
-                return Some((c as *const u16 as usize - haystack) / 2);
+                return Some((c as *const u16 as usize - ptr as usize) / 2);
             }
         }
     }
