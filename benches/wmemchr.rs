@@ -1,6 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
 use rand::Rng;
-use wmemchr_benches::unrollled_wmemchr_iterative;
+use wmemchr_benches::{unrollled_wmemchr, unrollled_wmemchr_iterative};
 
 const SMALL: usize = 256;
 const MEDIUM: usize = 66536;
