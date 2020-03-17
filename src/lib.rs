@@ -89,3 +89,18 @@ pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
     }
     None
 }
+
+#[test]
+fn test_implementation() {
+    let r = unrolled_find_u16s(0, [1, 2, 3, 4]);
+    assert_eq!(r, None);
+
+    let r = unrolled_find_u16s(0, [0, 2, 3, 4]);
+    assert_eq!(r, Some(1));
+
+    let r = unrolled_find_u16s(0, [1, 2, 0, 4]);
+    assert_eq!(r, Some(2));
+
+    let r = unrolled_find_u16s(0, [1, 2, 3, 0]);
+    assert_eq!(r, Some(3));
+}
