@@ -8,39 +8,11 @@ pub fn unrolled_find_u16s(needle: u16, haystack: &[u16]) -> Option<usize> {
     let mut start = &haystack[..];
 
     // For performance reasons unfold the loop eight times.
-    while len >= 8 {
-        if start[0] == needle {
-            return Some((start.as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[1] == needle {
-            return Some((start[1..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[2] == needle {
-            return Some((start[2..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[3] == needle {
-            return Some((start[3..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[4] == needle {
-            return Some((start[4..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[5] == needle {
-            return Some((start[5..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[6] == needle {
-            return Some((start[6..].as_ptr() as usize - ptr as usize) / 2);
-        }
-        if start[7] == needle {
-            return Some((start[7..].as_ptr() as usize - ptr as usize) / 2);
-        }
-
-        start = &start[8..];
-        len -= 8;
-    }
-
-    for (i, c) in start.iter().enumerate() {
-        if *c == needle {
-            return Some((start.as_ptr() as usize - ptr as usize) / 2 + i);
+    let mut chunks_8 = slice.chunks_exact(8);
+    for chunk in chunks_8 {
+        if let Some(c) = chunk.next() {
+            let () = c;
+            if c == needle {}
         }
     }
     None
