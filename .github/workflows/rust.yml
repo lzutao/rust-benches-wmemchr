@@ -31,8 +31,7 @@ jobs:
     - name: Install nightly Rust toolchain
       run: |
         rustup set profile minimal
-        rustup toolchain install nightly-${{ matrix.target }}
-        rustup override set nightly
+        rustup default nightly-${{ matrix.target }}
       shell: bash
     - name: Check out MinGW toolchain
       run: |
