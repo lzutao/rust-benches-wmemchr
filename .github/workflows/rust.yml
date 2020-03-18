@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      # RUST_BACKTRACE: 1
+      MINGW_URL: https://rust-lang-ci2.s3.amazonaws.com/rust-ci-mirror
     strategy:
       matrix:
         target:
@@ -16,15 +19,30 @@ jobs:
           - i686-pc-windows-msvc
           - x86_64-pc-windows-gnu
           - i686-pc-windows-gnu
+        include:
+          - target: x86_64-pc-windows-gnu
+            archive: x86_64-6.3.0-release-posix-seh-rt_v5-rev2.7z
+            mingw_dir: mingw64
+          - target: i686-pc-windows-gnu
+            archive: i686-6.3.0-release-posix-dwarf-rt_v5-rev2.7z
+            mingw_dir: mingw32
     steps:
     - uses: actions/checkout@v2
     - name: Install nightly Rust toolchain
       run: |
         rustup set profile minimal
-        rustup toolchain install nightly
-        rustup default nightly
-        rustup target add ${{ matrix.target }}
+        rustup toolchain install nightly-${{ matrix.target }}
+        rustup override set nightly
       shell: bash
+    - name: Check out MinGW toolchain
+      run: |
+        set -x
+        curl -sSf -O "${MINGW_URL}/${{ matrix.archive }}"
+        7z x -y "${{ matrix.archive }}" -o/c/mingw
+        rm "${{ matrix.archive }}"
+        echo "##[add-path]C:\mingw\${{ matrix.mingw_dir }}\bin"
+      shell: bash
+      if: matrix.mingw_dir
     - name: Rust Version
       run: |
         rustc -Vv
