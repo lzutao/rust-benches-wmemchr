@@ -31,6 +31,7 @@ jobs:
     - name: Install nightly Rust toolchain
       run: |
         rustup set profile minimal
+        rustup update stable-${{ matrix.target }}
         rustup default stable-${{ matrix.target }}
       shell: bash
     - name: Rust Version
