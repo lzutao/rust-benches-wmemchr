@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
+    # env:
       # RUST_BACKTRACE: 1
       # MINGW_URL: https://rust-lang-ci2.s3.amazonaws.com/rust-ci-mirror
     strategy:
