@@ -21,7 +21,7 @@ jobs:
     - name: Install Rust toolchain
       run: |
         rustup set profile minimal
-        rustup update stable-${{ matrix.target }}
+        rustup update --no-self-update stable-${{ matrix.target }}
         rustup default stable-${{ matrix.target }}
       shell: bash
     - name: Rust Version
