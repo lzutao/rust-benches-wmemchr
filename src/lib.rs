@@ -8,7 +8,7 @@ macro_rules! if_return {
     }
 }
 
-const UNROLL: usize = 8;
+const UNROLL: usize = 32;
 
 // Ported from <https://github.com/bminor/glibc/blob/master/wcsmbs/wmemchr.c>.
 pub fn unrollled_wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
@@ -17,7 +17,15 @@ pub fn unrollled_wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
     let mut chunks = haystack.chunks_exact(UNROLL);
 
     for chunk in &mut chunks {
-        if_return!(chunk, ptr, needle, 0, 1, 2, 3, 4, 5, 6, 7,);
+        if_return!(
+            chunk,
+            ptr,
+            needle,
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15, 16,
+            17, 18, 19, 20, 21, 22, 23, 24,
+            25, 26, 27, 28, 29, 30, 31,
+        );
     }
 
     for c in chunks.remainder() {
@@ -32,8 +40,15 @@ pub fn unrollled_wmemchr_iterative(needle: u16, haystack: &[u16]) -> Option<usiz
     let ptr = haystack.as_ptr();
     let mut start = &haystack[..];
     while start.len() >= UNROLL {
-        if_return!(start, ptr, needle, 0, 1, 2, 3, 4, 5, 6, 7,);
-
+        if_return!(
+            start,
+            ptr,
+            needle,
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15, 16,
+            17, 18, 19, 20, 21, 22, 23, 24,
+            25, 26, 27, 28, 29, 30, 31,
+        );
         start = &start[UNROLL..];
     }
 
