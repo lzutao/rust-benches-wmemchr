@@ -28,15 +28,12 @@ pub fn unrollled_wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
 
 pub fn unrollled_wmemchr_iterative(needle: u16, haystack: &[u16]) -> Option<usize> {
     let ptr = haystack.as_ptr();
-    let mut len = haystack.len();
     let mut start = &haystack[..];
-
     /* For performance reasons unfold the loop four times.  */
-    while len >= 8 {
+    while start.len() >= 8 {
         if_return!(start, ptr, needle, 0, 1, 2, 3, 4, 5, 6, 7,);
 
         start = &start[8..];
-        len -= 8;
     }
 
     for c in start {
