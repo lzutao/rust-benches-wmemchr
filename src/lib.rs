@@ -8,7 +8,7 @@ macro_rules! if_return {
     }
 }
 
-const UNROLL: usize = 8;
+const UNROLL: usize = 16;
 
 // Ported from <https://github.com/bminor/glibc/blob/master/wcsmbs/wmemchr.c>.
 pub fn unrollled_wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
@@ -22,7 +22,7 @@ pub fn unrollled_wmemchr(needle: u16, haystack: &[u16]) -> Option<usize> {
             ptr,
             needle,
             0, 1, 2, 3, 4, 5, 6, 7,
-            // 8, 9, 10, 11, 12, 13, 14, 15,
+            8, 9, 10, 11, 12, 13, 14, 15,
             // 16, 17, 18, 19, 20, 21, 22, 23,
             // 24, 25, 26, 27, 28, 29, 30, 31,
         );
@@ -45,7 +45,7 @@ pub fn unrollled_wmemchr_iterative(needle: u16, haystack: &[u16]) -> Option<usiz
             ptr,
             needle,
             0, 1, 2, 3, 4, 5, 6, 7,
-            // 8, 9, 10, 11, 12, 13, 14, 15,
+            8, 9, 10, 11, 12, 13, 14, 15,
             // 16, 17, 18, 19, 20, 21, 22, 23,
             // 24, 25, 26, 27, 28, 29, 30, 31,
         );
